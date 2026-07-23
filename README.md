@@ -1,34 +1,34 @@
 # Vektori
 
-Vektori ingests real agent execution traces and synthesizes RL environments from them: it
-extracts scenarios, grades each one against an executable rubric, and surfaces the specific
-capability gaps behind the failures, so training can target what's actually broken instead
-of retraining everything.
+LyceFlow's platform for turning real agent failures into RL training environments.
 
-## What's in this repo right now
+## Vision
 
-This is the platform frontend, built against one real ingested trace (`src/data/run8.json`,
-436 messages / 177 tool calls / 30M tokens) and the environment it produced
-(`src/data/environment.json`, 29 scenarios extracted, 25 graded clean, 4 flagged and withheld
-automatically by the verifier).
+Frontier labs already buy RL environments to post-train their models — that market's proven.
+The next buyer is enterprises: they run agents in production, don't want their data flowing
+through a frontier model's API, and hit specific tasks those models fail at. As they move
+those workloads onto open-weight/small models, they need those models trained on exactly the
+failures that matter to them — continuously, without regressing on what already works.
 
-- **Overview** (`src/pages/Overview.tsx`) — summary of the ingested trace and what it
+Vektori is that loop, productized:
+
+```
+ingest traces → identify model deficits → generate synthetic RL envs → train LoRA adapters per deficit → route to the right adapter
+```
+
+One LoRA adapter per capability deficit, not a full retrain — so fixing a gap never touches,
+and can't regress, what the base model already does well. A router picks the right adapter(s)
+at inference time. Full methodology (deficit-scoring formulas, how the synthetic envs get
+built): [`docs/DESIGN.md`](docs/DESIGN.md).
+
+## What's in this repo
+
+- **Overview** (`src/pages/Overview.tsx`) — summary of an ingested trace and the environment it
   produced: scenarios extracted, verifier checks, pass rate.
 - **Environments** (`src/pages/EnvironmentDetail.tsx`, `ScenarioDetail.tsx`) — the synthesized
-  environment, drilling into individual task packages and the rubric checks each one is
-  graded against.
-- **Runs** (`src/pages/RunsOverview.tsx`, `RunDetail.tsx`) — full transcript viewer for the
-  ingested trace: every tool call, reasoning step, and result.
+  environment, drilling into individual task packages and the rubric checks each one is graded
+  against.
+- **Runs** (`src/pages/RunsOverview.tsx`, `RunDetail.tsx`) — full transcript viewer: every tool
+  call, reasoning step, and result from an ingested trace.
 - **Train** (`src/pages/Train.tsx`) — the run configuration surface (capability deficit, base
   model, GRPO/PPO/DPO, LoRA) for training against a synthesized environment.
-
-## What this is not, yet
-
-There's no backend. Nothing here talks to GitHub, Notion, or an LLM at runtime — the app is a
-frontend against static trace data. The Train tab has no training loop behind it. We're
-validating the synthesis and evaluation loop first, then wiring in real ingestion and training
-infrastructure.
-
-## Stack
-
-Vite + React 19 + TypeScript + Tailwind v4. `npm install && npm run dev`.
