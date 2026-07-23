@@ -1,11 +1,9 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import { Sidebar } from './components/Sidebar'
 import { Overview } from './pages/Overview'
-import { Synthesizer } from './pages/Synthesizer'
 import { EnvironmentsList } from './pages/EnvironmentsList'
 import { EnvironmentDetail } from './pages/EnvironmentDetail'
 import { ScenarioDetail } from './pages/ScenarioDetail'
-import { CapabilityDeficits } from './pages/CapabilityDeficits'
 import { Train } from './pages/Train'
 import { RunsOverview } from './pages/RunsOverview'
 import { RunDetail } from './pages/RunDetail'
@@ -19,11 +17,9 @@ function App() {
         <main className="flex min-w-0 flex-1 flex-col overflow-y-auto">
           <Routes>
             <Route path="/" element={<Overview />} />
-            <Route path="/synthesize" element={<Synthesizer />} />
             <Route path="/environments" element={<EnvironmentsList />} />
             <Route path="/environments/:id" element={<EnvironmentDetail />} />
             <Route path="/environments/:id/scenarios/:task" element={<ScenarioDetail />} />
-            <Route path="/capability-deficits" element={<CapabilityDeficits />} />
             <Route path="/train" element={<Train />} />
             <Route path="/runs" element={<RunsOverview />} />
             <Route path="/runs/:id" element={<RunDetail />} />

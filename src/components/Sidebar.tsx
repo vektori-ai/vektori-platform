@@ -7,16 +7,12 @@ import {
   BookOpen,
   ArrowUpRight,
   ChevronsUpDown,
-  SquareTerminal,
-  Microscope,
   GraduationCap,
 } from 'lucide-react'
 
 const platformNav = [
   { to: '/', label: 'Overview', icon: LayoutDashboard, end: true },
-  { to: '/synthesize', label: 'Synthesizer', icon: SquareTerminal, end: false },
   { to: '/environments', label: 'Environments', icon: Boxes, end: false },
-  { to: '/capability-deficits', label: 'Capability deficits', icon: Microscope, end: false },
   { to: '/train', label: 'Train', icon: GraduationCap, end: false },
   { to: '/runs', label: 'Runs', icon: ListTree, end: false },
   { to: '/tools', label: 'Tools', icon: Wrench, end: false },
@@ -91,7 +87,7 @@ export function Sidebar() {
             <span className="relative inline-flex h-[7px] w-[7px] rounded-full bg-ok" />
           </span>
           <div className="leading-tight">
-            <p className="text-[11.5px] font-medium text-mid">Synthesizer online</p>
+            <p className="text-[11.5px] font-medium text-mid">Environment loaded</p>
             <p className="text-[10.5px] text-dim">run8 · 1 env generated</p>
           </div>
         </div>

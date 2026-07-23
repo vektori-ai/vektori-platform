@@ -1,5 +1,4 @@
 import type { ReactNode } from 'react'
-import { useNavigate } from 'react-router-dom'
 import { Page } from '../components/ui'
 import { PageHeader } from '../components/PageHeader'
 import { StatCard } from '../components/StatCard'
@@ -7,7 +6,7 @@ import { TerminalCard, TPrompt, TOk, TDim, THi } from '../components/TerminalCar
 import { environments, passRate } from '../data/environments'
 import { runs, toolErrors, allToolStats } from '../data/runs'
 import { formatTokens } from '../lib/format'
-import { Boxes, ListTree, Cpu, FileCheck2, ArrowRight } from 'lucide-react'
+import { Boxes, ListTree, Cpu, FileCheck2 } from 'lucide-react'
 
 function Stagger({ i, children }: { i: number; children: ReactNode }) {
   return (
@@ -18,8 +17,6 @@ function Stagger({ i, children }: { i: number; children: ReactNode }) {
 }
 
 export function Overview() {
-  const navigate = useNavigate()
-
   const env = environments[0]
   const run = runs[0]
   const rate = passRate(env)
@@ -103,21 +100,13 @@ export function Overview() {
             </span>
           }
           footer={
-            <>
-              <span className="flex min-w-0 items-center gap-2 text-[#c9c9c5]">
-                <span className="h-[6px] w-[6px] shrink-0 rounded-full bg-[#82c29b]" />
-                <span className="truncate">
-                  environment ready: <span className="font-medium text-[#eceae6]">benchtaskscollv3</span>{' '}
-                  <span className="text-[#8a8a86]">· {rate.pct.toFixed(1)}% baseline pass rate</span>
-                </span>
+            <span className="flex min-w-0 items-center gap-2 text-[#c9c9c5]">
+              <span className="h-[6px] w-[6px] shrink-0 rounded-full bg-[#82c29b]" />
+              <span className="truncate">
+                environment ready: <span className="font-medium text-[#eceae6]">benchtaskscollv3</span>{' '}
+                <span className="text-[#8a8a86]">· {rate.pct.toFixed(1)}% baseline pass rate</span>
               </span>
-              <button
-                onClick={() => navigate('/synthesize')}
-                className="flex shrink-0 items-center gap-1 text-[#8a8a86] transition-colors hover:text-[#eceae6]"
-              >
-                ▶ replay in Synthesizer <ArrowRight size={11} />
-              </button>
-            </>
+            </span>
           }
         >
           {logLines.map((line, i) => (

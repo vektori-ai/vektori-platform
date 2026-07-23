@@ -5,7 +5,6 @@ import { Badge } from '../components/Badge'
 import { Table, type Column } from '../components/Table'
 import { Progress, StackedBars } from '../components/Bars'
 import { StatCard } from '../components/StatCard'
-import { TerminalCard, TLine, TDim } from '../components/TerminalCard'
 import { getEnvironment, passRate, developerBreakdown } from '../data/environments'
 import { getRun, toolCallCounts } from '../data/runs'
 import type { Scenario } from '../types'
@@ -188,7 +187,7 @@ export function EnvironmentDetail() {
           </div>
 
           <div className="mt-3 grid grid-cols-5 gap-3">
-            <div className="col-span-3 space-y-3">
+            <div className="col-span-3">
               <Card title="Scenarios by developer">
                 <StackedBars items={byDev} />
                 <div className="mt-3.5 flex items-center gap-4 border-t border-line pt-3">
@@ -200,24 +199,6 @@ export function EnvironmentDetail() {
                   </span>
                 </div>
               </Card>
-              <TerminalCard title="evaluate your agent · python">
-                <TLine>
-                  <span className="text-[#b0aca4]">import</span> vektori
-                </TLine>
-                <TLine> </TLine>
-                <TLine>
-                  env = vektori.load(<span className="text-[#9dbfae]">"benchtaskscollv3"</span>){'   '}
-                  <TDim># {rate.total} scenarios · {env.rubric.length} rubric checks</TDim>
-                </TLine>
-                <TLine>
-                  report = env.evaluate(my_agent){'          '}
-                  <TDim># graded by the same verifier</TDim>
-                </TLine>
-                <TLine>
-                  report.pass_rate{'                         '}
-                  <TDim># {(rate.pct / 100).toFixed(3)} agent baseline</TDim>
-                </TLine>
-              </TerminalCard>
             </div>
             <div className="col-span-2">
               <Card title="Synthesis report">
