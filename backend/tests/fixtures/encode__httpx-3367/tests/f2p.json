@@ -1,0 +1,15 @@
+[
+  "tests/client/test_auth.py::test_async_auth_reads_response_body[asyncio]",
+  "tests/client/test_auth.py::test_async_auth_reads_response_body[trio]",
+  "tests/client/test_auth.py::test_sync_auth_reads_response_body",
+  "tests/models/test_requests.py::test_headers",
+  "tests/models/test_requests.py::test_json_encoded_data",
+  "tests/models/test_requests.py::test_request_picklable",
+  "tests/models/test_responses.py::test_response_json",
+  "tests/test_content.py::test_allow_nan_false",
+  "tests/test_content.py::test_ensure_ascii_false_with_french_characters",
+  "tests/test_content.py::test_json_content[asyncio]",
+  "tests/test_content.py::test_json_content[trio]",
+  "tests/test_content.py::test_separators_for_compact_json",
+  "tests/test_main.py::test_post"
+]
