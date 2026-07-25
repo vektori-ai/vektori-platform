@@ -1,6 +1,6 @@
 # Vektori
 
-Turning real agent failures into RL training environments.
+Turning real agent failures into RL training environments. Core is at this repo actively mainitanted: https://github.com/vektori-ai/vektori-trace
 
 ## Vision
 
