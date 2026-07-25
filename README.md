@@ -21,6 +21,16 @@ and can't regress, what the base model already does well. A router picks the rig
 at inference time. Full methodology (deficit-scoring formulas, how the synthetic envs get
 built): [`docs/DESIGN.md`](docs/DESIGN.md).
 
+## Backend
+
+All trace ingestion, capability diagnosis, and synthetic-env generation lives in
+[vektori-trace](https://github.com/vektori-ai/vektori-trace), pulled in as a git
+dependency (`pyproject.toml`) — this repo doesn't vendor or reimplement that logic.
+
+```bash
+uv sync   # installs vektori-trace + its CLI (`vektori-trace diagnose ...`)
+```
+
 ## What's in this repo
 
 - **Overview** (`src/pages/Overview.tsx`) — summary of an ingested trace and the environment it

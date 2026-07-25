@@ -1,0 +1,11 @@
+[project]
+name = "vektori-platform"
+version = "0.1.0"
+description = "Vektori's own trace ingestion/diagnosis glue on top of vektori-trace."
+requires-python = ">=3.12"
+dependencies = [
+    "vektori-trace @ git+https://github.com/vektori-ai/vektori-trace.git",
+]
+
+[tool.uv]
+package = false
