@@ -1,6 +1,6 @@
 # Vektori
 
-LyceFlow's platform for turning real agent failures into RL training environments.
+Turning real agent failures into RL training environments.
 
 ## Vision
 
